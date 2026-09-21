@@ -79,27 +79,41 @@ export default function HeroSection() {
                 🎮
               </motion.div>
             </motion.div>
+            
+            {/* FIRMA DEM */}
+            <motion.p 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.6 }}
+              className="font-sans text-[10px] sm:text-xs tracking-[0.4em] text-zinc-400 uppercase mt-6 mx-auto lg:mx-0 font-bold"
+            >
+              DIGITAL ENTERTAINMENT MANAGEMENT
+            </motion.p>
+
+
             <p className="font-sans text-sm sm:text-base lg:text-lg text-zinc-200 font-light mt-4 max-w-lg mx-auto lg:mx-0 leading-relaxed">
               Creamos un calendario de campañas que refuerzan los objetivos para conectar con el segmento digital y convocarlos a experiencias de comunidad.
             </p>
 
             {/* CAJA DE CONTACTO INTEGRADA ABAJO */}
-            <div className="mt-8 lg:mt-10 p-6 sm:p-8 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.5)] w-full max-w-xl mx-auto lg:mx-0 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#3A45D0]/10 to-transparent pointer-events-none" />
+            <div className="mt-6 lg:mt-8 p-6 sm:p-8 rounded-[2rem] bg-zinc-950/80 border border-[#3A45D0]/40 backdrop-blur-3xl shadow-[0_0_50px_rgba(58,69,208,0.25)] ring-1 ring-white/10 w-full max-w-xl mx-auto lg:mx-0 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#3A45D0]/15 to-transparent pointer-events-none" />
+              
+              {/* Glow sutil dentro de la caja */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 blur-[50px] rounded-full pointer-events-none" />
+              
               <form action="mailto:hola@dem.agency" method="post" encType="text/plain" className="relative z-10 flex flex-col gap-4">
                 <div className="flex flex-col sm:flex-row gap-4">
                   <input 
                     type="text" 
                     name="Nombre" 
                     placeholder="Tu Nombre" 
-                    className="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-[#3A45D0] focus:ring-1 focus:ring-[#3A45D0] transition-all backdrop-blur-md text-sm" 
+                    className="w-full bg-black/80 border border-white/20 rounded-xl px-5 py-3 text-white placeholder-zinc-400 focus:outline-none focus:border-[#3A45D0] focus:ring-2 focus:ring-[#3A45D0]/50 transition-all text-sm font-medium" 
                     required 
                   />
                   <input 
                     type="text" 
                     name="Empresa" 
                     placeholder="Tu Empresa" 
-                    className="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-[#3A45D0] focus:ring-1 focus:ring-[#3A45D0] transition-all backdrop-blur-md text-sm" 
+                    className="w-full bg-black/80 border border-white/20 rounded-xl px-5 py-3 text-white placeholder-zinc-400 focus:outline-none focus:border-[#3A45D0] focus:ring-2 focus:ring-[#3A45D0]/50 transition-all text-sm font-medium" 
                     required 
                   />
                 </div>
