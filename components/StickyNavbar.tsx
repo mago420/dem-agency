@@ -13,18 +13,20 @@ export default function StickyNavbar() {
 
   const [isTop, setIsTop] = useState(true);
 
-  const phrases = [
-    "(≧∇≦)",
-    "¿Agendamos?",
-    "(*^◯^*)",
-    "¿Agendamos?",
-    "(((o(*°▽°*)o)))",
-    "¿Agendamos?",
-    "(^ω^)",
-    "¿Agendamos?",
-    "(o^^o)",
-    "¿Agendamos?"
-  ];
+  const marqueeContent = (
+    <>
+      <span className="font-sans uppercase text-white tracking-widest font-bold">¿Agendamos?</span>
+      <span className="font-mono text-[#8492f5]">(≧∇≦)</span>
+      <span className="font-sans uppercase text-white tracking-widest font-bold">¿Agendamos?</span>
+      <span className="font-mono text-[#8492f5]">(*^◯^*)</span>
+      <span className="font-sans uppercase text-white tracking-widest font-bold">¿Agendamos?</span>
+      <span className="font-mono text-[#8492f5]">(((o(*°▽°*)o)))</span>
+      <span className="font-sans uppercase text-white tracking-widest font-bold">¿Agendamos?</span>
+      <span className="font-mono text-[#8492f5]">(^ω^)</span>
+      <span className="font-sans uppercase text-white tracking-widest font-bold">¿Agendamos?</span>
+      <span className="font-mono text-[#8492f5]">(o^^o)</span>
+    </>
+  );
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -33,12 +35,6 @@ export default function StickyNavbar() {
       setIsTop(true);
     } else {
       setIsTop(false);
-    }
-    
-    // Cambiar frase dinámicamente cada 400px de scroll para que rote más rápido
-    const phraseIndex = Math.floor(latest / 400) % phrases.length;
-    if (phrases[phraseIndex] !== scrollPhrase) {
-      setScrollPhrase(phrases[phraseIndex]);
     }
     
     // Hide navbar on scroll down, show on scroll up (solo si ya scrolleó)
@@ -67,7 +63,7 @@ export default function StickyNavbar() {
       <a
         href="#contacto"
         onClick={(e) => handleNavClick(e, '#contacto')}
-        className="flex items-center bg-black/90 hover:bg-[#1A1E40] border border-white/10 hover:border-[#3A45D0]/80 rounded-full backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(58,69,208,0.6)] transition-all cursor-pointer group"
+        className="flex items-center bg-black/90 hover:bg-[#1A1E40] border border-white/10 hover:border-[#3A45D0]/80 rounded-full backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(58,69,208,0.6)] transition-all cursor-pointer group overflow-hidden"
       >
         <AnimatePresence mode="wait">
           {isTop ? (
@@ -90,34 +86,35 @@ export default function StickyNavbar() {
               exit={{ opacity: 0, width: 0 }}
               className="flex items-center gap-3 pl-2 pr-6 py-2 overflow-hidden"
             >
-              {/* Logo animado súper cool con Ripple Effect */}
+              {/* Logo animado con Glow y Wobble suave (Sin 3D que lo oculta) */}
               <div className="relative flex items-center justify-center shrink-0">
                 <div className="absolute inset-0 bg-[#3A45D0] rounded-full animate-ping opacity-20 group-hover:opacity-40" style={{ animationDuration: '2s' }} />
                 <div className="absolute inset-0 bg-purple-500 rounded-full animate-pulse opacity-20 blur-md group-hover:opacity-60" />
                 <motion.div
-                  animate={{ rotateY: [0, 180, 360], y: [-2, 2, -2] }}
-                  transition={{ rotateY: { duration: 6, repeat: Infinity, ease: "linear" }, y: { duration: 3, repeat: Infinity, ease: "easeInOut" } }}
-                  style={{ transformStyle: "preserve-3d" }}
+                  animate={{ rotateZ: [-10, 10, -10], y: [-2, 2, -2] }}
+                  transition={{ rotateZ: { duration: 4, repeat: Infinity, ease: "easeInOut" }, y: { duration: 3, repeat: Infinity, ease: "easeInOut" } }}
                   className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-[#3A45D0] via-blue-500 to-purple-600 flex items-center justify-center shadow-[0_0_20px_rgba(58,69,208,0.8)] border border-white/20 group-hover:border-white/50 transition-colors shrink-0"
                 >
                   <Image src="/images/dem-icon-d-white.png" alt="DEM Icon" width={20} height={20} className="object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
                 </motion.div>
               </div>
 
-              {/* Ruleta Dinámica */}
-              <div className="relative overflow-hidden h-5 w-[110px] flex items-center">
-                <AnimatePresence mode="popLayout">
-                  <motion.span
-                    key={scrollPhrase}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4, type: "spring", bounce: 0.4 }}
-                    className={`absolute left-0 text-xs sm:text-sm font-bold tracking-widest whitespace-nowrap ${scrollPhrase === "¿Agendamos?" ? "font-sans uppercase text-white" : "font-mono text-[#8492f5]"}`}
-                  >
-                    {scrollPhrase}
-                  </motion.span>
-                </AnimatePresence>
+              {/* Letrero de Noticias (Marquee) Continuo */}
+              <div 
+                className="relative overflow-hidden h-5 w-[140px] sm:w-[160px] flex items-center"
+                style={{ maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}
+              >
+                <motion.div
+                  animate={{ x: [0, -1500] }}
+                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                  className="flex items-center gap-4 text-xs sm:text-sm whitespace-nowrap px-4"
+                >
+                  {marqueeContent}
+                  {marqueeContent}
+                  {marqueeContent}
+                  {marqueeContent}
+                  {marqueeContent}
+                </motion.div>
               </div>
             </motion.div>
           )}
