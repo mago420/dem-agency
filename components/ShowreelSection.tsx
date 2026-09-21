@@ -3,13 +3,15 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import AnimatedMontage from "./AnimatedMontage";
 
 const showreelClips = [
   {
     id: "clip-torneo",
+    type: "montage",
     title: "Torneo Arena en Vivo",
     category: "ESPORTS & BROADCAST",
-    src: "/videos/coolbox-elite-cup.mp4",
+    src: "",
     poster: "/deck/assets/case-coolbox-cup.jpg",
   },
   {
@@ -110,17 +112,21 @@ export default function ShowreelSection() {
           transition={{ duration: 0.6 }}
           className="relative aspect-video max-h-[70vh] w-full rounded-3xl overflow-hidden border border-white/20 shadow-[0_0_50px_rgba(58,69,208,0.25)] bg-zinc-950 mx-auto group"
         >
-          <video
-            ref={videoRef}
-            key={currentClip.src}
-            controls
-            playsInline
-            preload="metadata"
-            className="w-full h-full object-cover"
-            poster={currentClip.poster}
-          >
-            <source src={currentClip.src} type="video/mp4" />
-          </video>
+          {currentClip.type === 'montage' ? (
+            <AnimatedMontage className="w-full h-full object-cover" />
+          ) : (
+            <video
+              ref={videoRef}
+              key={currentClip.src}
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-cover"
+              poster={currentClip.poster}
+            >
+              <source src={currentClip.src} type="video/mp4" />
+            </video>
+          )}
 
           {/* Badge Flotante Superior */}
           <div className="absolute top-4 left-4 z-10 pointer-events-none">

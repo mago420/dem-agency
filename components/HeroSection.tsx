@@ -4,9 +4,10 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import TrustGrid from "./TrustGrid";
+import AnimatedMontage from "./AnimatedMontage";
 
 const highlightEvents = [
-  { id: 1, type: "video", title: "Torneos, League Ops y Broadcast", tag: "LIVE", src: "/videos/coolbox-elite-cup.mp4", poster: "/deck/assets/case-gameclub-19k.jpg", aspect: "aspect-[3/4]" },
+  { id: 1, type: "montage", title: "Torneos, League Ops y Broadcast", tag: "LIVE", src: "/deck/assets/case-gameclub-19k.jpg", poster: "/deck/assets/case-gameclub-19k.jpg", aspect: "aspect-[3/4]" },
   { id: 2, type: "image", title: "Sampling BTL Retail", tag: "RETAIL", src: "/deck/assets/falabella-coffee-party.jpg", aspect: "aspect-[4/5]" },
   { id: 3, type: "image", title: "Hub de Comunidades", tag: "CREATORS", src: "/deck/assets/experience-arena-community.jpg", aspect: "aspect-[4/5]" },
   { id: 4, type: "image", title: "Producción de Eventos", tag: "ESPORTS", src: "/deck/assets/case-coolbox-cup.jpg", aspect: "aspect-[4/5]" },
@@ -185,7 +186,9 @@ export default function HeroSection() {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               className={`relative w-[70vw] sm:w-[45vw] md:w-[35vw] lg:w-[22vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 group cursor-pointer ${item.aspect} shadow-2xl hover:border-[#7B85FF]/50 hover:shadow-[0_0_40px_rgba(123,133,255,0.3)] transition-all`}
             >
-              {item.type === "video" ? (
+              {item.type === "montage" ? (
+                <AnimatedMontage className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
+              ) : item.type === "video" ? (
                 <video
                   src={item.src}
                   poster={item.poster}

@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import AnimatedMontage from "./AnimatedMontage";
 
 const feedItems = [
-  { type: 'video', src: '/videos/coolbox-elite-cup.mp4', label: 'Broadcast 2027', tag: '● LIVE', height: 'h-64 sm:h-80' },
+  { type: 'montage', src: '/deck/assets/case-coolbox-cup.jpg', label: 'Broadcast 2027', tag: '● LIVE', height: 'h-64 sm:h-80' },
   { type: 'image', src: '/deck/assets/case-gameclub-19k.jpg', label: 'Movistar GameClub', tag: '19K Gamers', height: 'h-48 sm:h-64' },
   { type: 'image', src: '/deck/assets/creator-limaconcafeina.jpg', label: '@limaconcafeina', tag: 'TikTok', height: 'h-72 sm:h-96' },
   { type: 'image', src: '/deck/assets/coolbox-elite-cup-cosplay.jpg', label: 'Elite Cup Cosplay', tag: 'FANS', height: 'h-64 sm:h-80' },
@@ -92,7 +93,11 @@ export default function ProjectsSection() {
               transition={{ duration: 0.4, delay: (idx % 4) * 0.1 }}
               className={`break-inside-avoid relative group rounded-[2rem] overflow-hidden bg-zinc-900 border border-white/10 hover:border-[#7B85FF] shadow-lg hover:shadow-[0_0_30px_rgba(123,133,255,0.3)] transition-all duration-500 cursor-pointer ${item.height}`}
             >
-              {item.type === 'video' ? (
+              {item.type === 'montage' ? (
+                <div className="absolute inset-0 z-0">
+                  <AnimatedMontage className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" />
+                </div>
+              ) : item.type === 'video' ? (
                 <video
                   autoPlay
                   loop
@@ -113,7 +118,9 @@ export default function ProjectsSection() {
               )}
               
               {/* Overlay Oscuro */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300 pointer-events-none" />
+              {item.type !== 'montage' && (
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300 pointer-events-none" />
+              )}
 
               {/* Contenido / Badges GenZ */}
               <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-between pointer-events-none">
