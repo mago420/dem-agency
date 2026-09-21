@@ -13,6 +13,8 @@ export default function StickyNavbar() {
 
   const [isTop, setIsTop] = useState(true);
 
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   const marqueeContent = (
     <>
       <span className="font-sans uppercase text-white tracking-widest font-bold">¿Agendamos?</span>
@@ -33,13 +35,15 @@ export default function StickyNavbar() {
     
     if (latest < 50) {
       setIsTop(true);
+      if (isFormOpen) setIsFormOpen(false); // Cierra modal si vuelve arriba
     } else {
       setIsTop(false);
     }
     
-    // Hide navbar on scroll down, show on scroll up (solo si ya scrolleó)
+    // Ocultar navbar al scrollear hacia abajo, mostrar hacia arriba
     if (latest > previous && latest > 150) {
       setHidden(true);
+      if (isFormOpen) setIsFormOpen(false);
     } else {
       setHidden(false);
     }
@@ -47,24 +51,92 @@ export default function StickyNavbar() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    const section = document.querySelector(id);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-      // Si el botón lleva al contacto, hacer focus en la casilla Empresa
-      setTimeout(() => {
-        const empresaInput = document.getElementById('empresa-input');
-        if (empresaInput) empresaInput.focus();
-      }, 800); // 800ms da tiempo para que termine el scroll fluido
+    if (isTop) {
+      // Comportamiento original si está arriba
+      const section = document.querySelector(id);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          const empresaInput = document.getElementById('empresa-input');
+          if (empresaInput) empresaInput.focus();
+        }, 800);
+      }
+    } else {
+      // Abre/Cierra el popover si está en estado scrolleado
+      setIsFormOpen(!isFormOpen);
     }
+  };
+
+  const handleMailSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const nombre = formData.get("Nombre") as string;
+    const empresa = formData.get("Empresa") as string;
+    const mensaje = formData.get("Mensaje") as string;
+    
+    const subject = encodeURIComponent(`Contacto de ${nombre} (${empresa})`);
+    const body = encodeURIComponent(`Hola equipo DEM,\n\nMi nombre es ${nombre} de ${empresa}.\n\n${mensaje}`);
+    
+    window.location.href = `mailto:hola@dem.agency?subject=${subject}&body=${body}`;
+    setIsFormOpen(false);
   };
 
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, type: "spring", bounce: 0.5, delay: 1 }}
-      className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 pointer-events-auto"
+      animate={{ opacity: 1, scale: 1, y: hidden ? 100 : 0 }}
+      transition={{ duration: 0.4, type: "spring", bounce: 0.5 }}
+      className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 pointer-events-auto flex flex-col items-end"
     >
+      {/* Popover Formulario */}
+      <AnimatePresence>
+        {isFormOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            transition={{ type: "spring", bounce: 0.4 }}
+            className="mb-4 p-6 rounded-[2rem] bg-zinc-950/95 border border-[#3A45D0]/40 backdrop-blur-3xl shadow-[0_0_50px_rgba(58,69,208,0.3)] ring-1 ring-white/10 w-[calc(100vw-3rem)] sm:w-[400px] relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 blur-[50px] rounded-full pointer-events-none" />
+            
+            <h3 className="font-display text-xl font-bold text-white mb-1">¡Iniciemos la partida! 🎮</h3>
+            <p className="text-xs text-zinc-400 mb-4">Mándanos un mensaje y agendemos.</p>
+            
+            <form onSubmit={handleMailSubmit} className="flex flex-col gap-3 relative z-10">
+              <input 
+                type="text" 
+                name="Nombre" 
+                placeholder="Tu Nombre" 
+                className="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-zinc-500 focus:outline-none focus:border-[#3A45D0] focus:ring-1 focus:ring-[#3A45D0]/50 transition-all text-sm font-medium" 
+                required 
+              />
+              <input 
+                type="text" 
+                name="Empresa" 
+                placeholder="Tu Empresa" 
+                className="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-zinc-500 focus:outline-none focus:border-[#3A45D0] focus:ring-1 focus:ring-[#3A45D0]/50 transition-all text-sm font-medium" 
+                required 
+              />
+              <textarea 
+                name="Mensaje" 
+                placeholder="Escribe tu mensaje aquí..." 
+                rows={3}
+                className="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-zinc-500 focus:outline-none focus:border-[#3A45D0] focus:ring-1 focus:ring-[#3A45D0]/50 transition-all text-sm font-medium resize-none" 
+                required 
+              />
+              <button
+                type="submit"
+                className="group w-full relative overflow-hidden flex items-center justify-center gap-2 px-6 py-3 mt-1 text-xs font-sans font-black uppercase tracking-widest text-white bg-black/60 border border-[#3A45D0]/60 hover:bg-[#3A45D0]/20 rounded-xl transition-all shadow-[0_0_20px_rgba(58,69,208,0.2)] hover:border-white/50"
+              >
+                <span>Enviar Mensaje</span>
+                <span>🚀</span>
+              </button>
+            </form>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <a
         href="#contacto"
         onClick={(e) => handleNavClick(e, '#contacto')}

@@ -103,7 +103,21 @@ export default function HeroSection() {
               {/* Glow sutil dentro de la caja */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 blur-[50px] rounded-full pointer-events-none" />
               
-              <form action="mailto:hola@dem.agency" method="post" encType="text/plain" className="relative z-10 flex flex-col gap-4">
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const nombre = formData.get("Nombre") as string;
+                  const empresa = formData.get("Empresa") as string;
+                  const mensaje = formData.get("Mensaje") as string;
+                  
+                  const subject = encodeURIComponent(`Contacto de ${nombre} (${empresa})`);
+                  const body = encodeURIComponent(`Hola equipo DEM,\n\nMi nombre es ${nombre} de ${empresa}.\n\n${mensaje}`);
+                  
+                  window.location.href = `mailto:hola@dem.agency?subject=${subject}&body=${body}`;
+                }} 
+                className="relative z-10 flex flex-col gap-4"
+              >
                 <div className="flex flex-col sm:flex-row gap-4">
                   <input 
                     type="text" 
@@ -121,6 +135,13 @@ export default function HeroSection() {
                     required 
                   />
                 </div>
+                <textarea 
+                  name="Mensaje" 
+                  placeholder="¿De qué trata tu proyecto?" 
+                  rows={2}
+                  className="w-full bg-black/80 border border-white/20 rounded-xl px-5 py-3 text-white placeholder-zinc-400 focus:outline-none focus:border-[#3A45D0] focus:ring-2 focus:ring-[#3A45D0]/50 transition-all text-sm font-medium resize-none" 
+                  required 
+                />
                 <button
                   type="submit"
                   className="group w-full relative overflow-hidden flex items-center justify-center gap-3 px-6 py-4 mt-2 text-sm font-sans font-black uppercase tracking-widest text-white bg-black/60 border border-[#3A45D0]/60 hover:bg-[#3A45D0]/20 rounded-xl transition-all shadow-[0_0_20px_rgba(58,69,208,0.2)] hover:shadow-[0_0_30px_rgba(58,69,208,0.5)] hover:border-white/50 hover:scale-[1.02] active:scale-[0.98]"
