@@ -12,12 +12,14 @@ export default function StickyNavbar() {
   const [scrollPhrase, setScrollPhrase] = useState("¡CONTÁCTANOS!");
 
   const phrases = [
-    "¡Contáctanos!",
-    "Let's goooo",
-    "¿Un café?",
-    "¿Pc o laptop?",
-    "¡Acá estamos!",
-    "¿Agendamos?"
+    "(((o(*°▽°*)o)))",
+    "(≧∇≦)",
+    "(*^◯^*)",
+    "(^ω^)",
+    "( ˆ▽ˆ )",
+    "(o^^o)",
+    "(*^_^*)",
+    "(^O^)"
   ];
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -59,7 +61,7 @@ export default function StickyNavbar() {
       <a
         href="#contacto"
         onClick={(e) => handleNavClick(e, '#contacto')}
-        className="flex items-center gap-4 bg-black/90 hover:bg-[#1A1E40] border border-white/10 hover:border-[#3A45D0]/80 rounded-full pl-4 pr-6 py-3 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(58,69,208,0.6)] transition-all cursor-pointer group"
+        className="flex items-center gap-4 bg-black/90 hover:bg-[#1A1E40] border border-white/10 hover:border-[#3A45D0]/80 rounded-full pl-4 pr-6 py-2 sm:py-3 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(58,69,208,0.6)] transition-all cursor-pointer group"
       >
         {/* Logo animado súper cool con Ripple Effect */}
         <div className="relative flex items-center justify-center">
@@ -83,20 +85,25 @@ export default function StickyNavbar() {
           </motion.div>
         </div>
 
-        {/* Frase dinámica con AnimatePresence para suavizar el cambio */}
-        <div className="relative overflow-hidden h-5 w-[11rem] flex items-center justify-start">
-          <AnimatePresence mode="popLayout">
-            <motion.span
-              key={scrollPhrase}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-              className="absolute text-xs font-sans font-black uppercase tracking-widest text-white whitespace-nowrap"
-            >
-              {scrollPhrase}
-            </motion.span>
-          </AnimatePresence>
+        {/* Texto 2 líneas: Fijo + Emoticon Dinámico */}
+        <div className="flex flex-col items-start justify-center pr-2">
+          <span className="text-xs font-sans font-black uppercase tracking-widest text-white leading-none">
+            ¡Contáctanos!
+          </span>
+          <div className="relative overflow-hidden h-4 w-[110px] mt-1">
+            <AnimatePresence mode="popLayout">
+              <motion.span
+                key={scrollPhrase}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+                className="absolute left-0 text-[11px] font-mono font-bold tracking-widest text-[#8492f5] whitespace-nowrap"
+              >
+                {scrollPhrase}
+              </motion.span>
+            </AnimatePresence>
+          </div>
         </div>
       </a>
     </motion.div>
