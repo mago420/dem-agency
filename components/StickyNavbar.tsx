@@ -11,31 +11,37 @@ export default function StickyNavbar() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [scrollPhrase, setScrollPhrase] = useState("¡CONTÁCTANOS!");
 
+  const [isTop, setIsTop] = useState(true);
+
   const phrases = [
-    "(((o(*°▽°*)o)))",
     "(≧∇≦)",
+    "¿Agendamos?",
     "(*^◯^*)",
+    "¿Agendamos?",
+    "(((o(*°▽°*)o)))",
+    "¿Agendamos?",
     "(^ω^)",
-    "( ˆ▽ˆ )",
+    "¿Agendamos?",
     "(o^^o)",
-    "(*^_^*)",
-    "(^O^)"
+    "¿Agendamos?"
   ];
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
     
-    // Cambiar frase dinámicamente cada 600px de scroll
-    const phraseIndex = Math.floor(latest / 600) % phrases.length;
+    if (latest < 50) {
+      setIsTop(true);
+    } else {
+      setIsTop(false);
+    }
+    
+    // Cambiar frase dinámicamente cada 400px de scroll para que rote más rápido
+    const phraseIndex = Math.floor(latest / 400) % phrases.length;
     if (phrases[phraseIndex] !== scrollPhrase) {
       setScrollPhrase(phrases[phraseIndex]);
     }
     
-    // Background blur toggling
-    if (latest > 50) setHasScrolled(true);
-    else setHasScrolled(false);
-    
-    // Hide navbar on scroll down, show on scroll up
+    // Hide navbar on scroll down, show on scroll up (solo si ya scrolleó)
     if (latest > previous && latest > 150) {
       setHidden(true);
     } else {
@@ -61,50 +67,61 @@ export default function StickyNavbar() {
       <a
         href="#contacto"
         onClick={(e) => handleNavClick(e, '#contacto')}
-        className="flex items-center gap-4 bg-black/90 hover:bg-[#1A1E40] border border-white/10 hover:border-[#3A45D0]/80 rounded-full pl-4 pr-6 py-2 sm:py-3 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(58,69,208,0.6)] transition-all cursor-pointer group"
+        className="flex items-center bg-black/90 hover:bg-[#1A1E40] border border-white/10 hover:border-[#3A45D0]/80 rounded-full backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(58,69,208,0.6)] transition-all cursor-pointer group"
       >
-        {/* Logo animado súper cool con Ripple Effect */}
-        <div className="relative flex items-center justify-center">
-          {/* Pulsos traseros */}
-          <div className="absolute inset-0 bg-[#3A45D0] rounded-full animate-ping opacity-20 group-hover:opacity-40" style={{ animationDuration: '2s' }} />
-          <div className="absolute inset-0 bg-purple-500 rounded-full animate-pulse opacity-20 blur-md group-hover:opacity-60" />
-          
-          <motion.div
-            animate={{ 
-              rotateY: [0, 180, 360],
-              y: [-2, 2, -2]
-            }}
-            transition={{ 
-              rotateY: { duration: 6, repeat: Infinity, ease: "linear" },
-              y: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-            }}
-            style={{ transformStyle: "preserve-3d" }}
-            className="relative w-10 h-10 rounded-full bg-gradient-to-tr from-[#3A45D0] via-blue-500 to-purple-600 flex items-center justify-center shadow-[0_0_20px_rgba(58,69,208,0.8)] border border-white/20 group-hover:border-white/50 transition-colors shrink-0"
-          >
-            <Image src="/images/dem-icon-d-white.png" alt="DEM Icon" width={18} height={18} className="object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
-          </motion.div>
-        </div>
+        <AnimatePresence mode="wait">
+          {isTop ? (
+            <motion.div 
+              key="top-state"
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: 'auto' }}
+              exit={{ opacity: 0, width: 0 }}
+              className="px-8 py-4 sm:px-10 sm:py-5 flex items-center justify-center overflow-hidden"
+            >
+              <span className="font-sans font-black uppercase tracking-[0.2em] text-white text-sm sm:text-base whitespace-nowrap">
+                ¡Contáctanos!
+              </span>
+            </motion.div>
+          ) : (
+            <motion.div 
+              key="scrolled-state"
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: 'auto' }}
+              exit={{ opacity: 0, width: 0 }}
+              className="flex items-center gap-3 pl-2 pr-6 py-2 overflow-hidden"
+            >
+              {/* Logo animado súper cool con Ripple Effect */}
+              <div className="relative flex items-center justify-center shrink-0">
+                <div className="absolute inset-0 bg-[#3A45D0] rounded-full animate-ping opacity-20 group-hover:opacity-40" style={{ animationDuration: '2s' }} />
+                <div className="absolute inset-0 bg-purple-500 rounded-full animate-pulse opacity-20 blur-md group-hover:opacity-60" />
+                <motion.div
+                  animate={{ rotateY: [0, 180, 360], y: [-2, 2, -2] }}
+                  transition={{ rotateY: { duration: 6, repeat: Infinity, ease: "linear" }, y: { duration: 3, repeat: Infinity, ease: "easeInOut" } }}
+                  style={{ transformStyle: "preserve-3d" }}
+                  className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-[#3A45D0] via-blue-500 to-purple-600 flex items-center justify-center shadow-[0_0_20px_rgba(58,69,208,0.8)] border border-white/20 group-hover:border-white/50 transition-colors shrink-0"
+                >
+                  <Image src="/images/dem-icon-d-white.png" alt="DEM Icon" width={20} height={20} className="object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
+                </motion.div>
+              </div>
 
-        {/* Texto 2 líneas: Fijo + Emoticon Dinámico */}
-        <div className="flex flex-col items-start justify-center pr-2">
-          <span className="text-xs font-sans font-black uppercase tracking-widest text-white leading-none">
-            ¡Contáctanos!
-          </span>
-          <div className="relative overflow-hidden h-4 w-[110px] mt-1">
-            <AnimatePresence mode="popLayout">
-              <motion.span
-                key={scrollPhrase}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.3 }}
-                className="absolute left-0 text-[11px] font-mono font-bold tracking-widest text-[#8492f5] whitespace-nowrap"
-              >
-                {scrollPhrase}
-              </motion.span>
-            </AnimatePresence>
-          </div>
-        </div>
+              {/* Ruleta Dinámica */}
+              <div className="relative overflow-hidden h-5 w-[110px] flex items-center">
+                <AnimatePresence mode="popLayout">
+                  <motion.span
+                    key={scrollPhrase}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, type: "spring", bounce: 0.4 }}
+                    className={`absolute left-0 text-xs sm:text-sm font-bold tracking-widest whitespace-nowrap ${scrollPhrase === "¿Agendamos?" ? "font-sans uppercase text-white" : "font-mono text-[#8492f5]"}`}
+                  >
+                    {scrollPhrase}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </a>
     </motion.div>
   );
