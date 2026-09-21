@@ -114,6 +114,7 @@ export default function HeroSection() {
                   />
                   <input 
                     type="text" 
+                    id="empresa-input"
                     name="Empresa" 
                     placeholder="Tu Empresa" 
                     className="w-full bg-black/80 border border-white/20 rounded-xl px-5 py-3 text-white placeholder-zinc-400 focus:outline-none focus:border-[#3A45D0] focus:ring-2 focus:ring-[#3A45D0]/50 transition-all text-sm font-medium" 

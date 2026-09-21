@@ -50,6 +50,11 @@ export default function StickyNavbar() {
     const section = document.querySelector(id);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
+      // Si el botón lleva al contacto, hacer focus en la casilla Empresa
+      setTimeout(() => {
+        const empresaInput = document.getElementById('empresa-input');
+        if (empresaInput) empresaInput.focus();
+      }, 800); // 800ms da tiempo para que termine el scroll fluido
     }
   };
 
@@ -72,11 +77,22 @@ export default function StickyNavbar() {
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: 'auto' }}
               exit={{ opacity: 0, width: 0 }}
-              className="px-8 py-4 sm:px-10 sm:py-5 flex items-center justify-center overflow-hidden"
+              className="px-8 py-4 sm:px-10 sm:py-5 flex items-center justify-center overflow-hidden relative"
             >
-              <span className="font-sans font-black uppercase tracking-[0.2em] text-white text-sm sm:text-base whitespace-nowrap">
+              {/* Explosión y Aura vibrante de fondo */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-[#3A45D0] to-cyan-500 opacity-20 blur-md animate-pulse" style={{ animationDuration: '2s' }} />
+              
+              {/* Texto palpitante y super brillante */}
+              <motion.span 
+                animate={{ 
+                  scale: [1, 1.05, 1], 
+                  textShadow: ["0px 0px 8px rgba(255,255,255,0.3)", "0px 0px 15px rgba(255,255,255,0.8)", "0px 0px 8px rgba(255,255,255,0.3)"] 
+                }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                className="relative font-sans font-black uppercase tracking-[0.2em] text-white text-sm sm:text-base whitespace-nowrap z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+              >
                 ¡Contáctanos!
-              </span>
+              </motion.span>
             </motion.div>
           ) : (
             <motion.div 
