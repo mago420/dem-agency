@@ -81,15 +81,18 @@ export default function HeroSection() {
             </motion.div>
             
             {/* FIRMA DEM */}
-            <motion.p 
+            <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.6 }}
-              className="font-sans text-[10px] sm:text-xs tracking-[0.4em] text-zinc-400 uppercase mt-6 mx-auto lg:mx-0 font-bold"
+              className="flex items-center gap-3 lg:gap-4 mt-3 lg:mt-4 mx-auto lg:mx-0 w-fit"
             >
-              DIGITAL ENTERTAINMENT MANAGEMENT
-            </motion.p>
+              <div className="w-6 lg:w-10 h-[1px] bg-gradient-to-r from-transparent to-[#3A45D0]" />
+              <p className="font-sans text-[9px] sm:text-[10px] lg:text-xs tracking-[0.4em] text-zinc-300 uppercase font-bold drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]">
+                DIGITAL ENTERTAINMENT MANAGEMENT
+              </p>
+              <div className="w-6 lg:w-10 h-[1px] bg-gradient-to-l from-transparent to-[#3A45D0] lg:hidden" />
+            </motion.div>
 
-
-            <p className="font-sans text-sm sm:text-base lg:text-lg text-zinc-200 font-light mt-4 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            <p className="font-sans text-sm sm:text-base lg:text-lg text-zinc-300 font-light mt-8 lg:mt-10 max-w-lg mx-auto lg:mx-0 leading-relaxed drop-shadow-md">
               Creamos un calendario de campañas que refuerzan los objetivos para conectar con el segmento digital y convocarlos a experiencias de comunidad.
             </p>
 
@@ -119,10 +122,10 @@ export default function HeroSection() {
                 </div>
                 <button
                   type="submit"
-                  className="group w-full relative flex items-center justify-center gap-3 px-6 py-4 mt-2 text-sm font-sans font-black uppercase tracking-widest text-white bg-gradient-to-r from-[#3A45D0] to-purple-600 hover:from-[#4932CA] hover:to-purple-500 rounded-xl transition-all shadow-[0_0_20px_rgba(58,69,208,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:scale-[1.02] active:scale-[0.98]"
+                  className="group w-full relative overflow-hidden flex items-center justify-center gap-3 px-6 py-4 mt-2 text-sm font-sans font-black uppercase tracking-widest text-white bg-black/60 border border-[#3A45D0]/60 hover:bg-[#3A45D0]/20 rounded-xl transition-all shadow-[0_0_20px_rgba(58,69,208,0.2)] hover:shadow-[0_0_30px_rgba(58,69,208,0.5)] hover:border-white/50 hover:scale-[1.02] active:scale-[0.98]"
                 >
-                  <span>Hablemos del 2027</span>
-                  <span className="text-lg group-hover:translate-x-1 transition-transform">🚀</span>
+                  <span className="relative z-10 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">Hablemos del 2027</span>
+                  <span className="relative z-10 text-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">🚀</span>
                 </button>
               </form>
               <p className="relative z-10 text-[9px] text-zinc-500 mt-4 font-mono text-center uppercase tracking-widest">
