@@ -7,7 +7,6 @@ import Link from "next/link";
 
 export default function StickyNavbar() {
   const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [scrollPhrase, setScrollPhrase] = useState("¡CONTÁCTANOS!");
 
@@ -31,21 +30,11 @@ export default function StickyNavbar() {
   );
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    
     if (latest < 50) {
       setIsTop(true);
       if (isFormOpen) setIsFormOpen(false); // Cierra modal si vuelve arriba
     } else {
       setIsTop(false);
-    }
-    
-    // Ocultar navbar al scrollear hacia abajo, mostrar hacia arriba
-    if (latest > previous && latest > 150) {
-      setHidden(true);
-      if (isFormOpen) setIsFormOpen(false);
-    } else {
-      setHidden(false);
     }
   });
 
@@ -84,7 +73,7 @@ export default function StickyNavbar() {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1, y: hidden ? 100 : 0 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.4, type: "spring", bounce: 0.5 }}
       className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 pointer-events-auto flex flex-col items-end"
     >
