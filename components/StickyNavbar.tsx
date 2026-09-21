@@ -12,12 +12,12 @@ export default function StickyNavbar() {
   const [scrollPhrase, setScrollPhrase] = useState("¡CONTÁCTANOS!");
 
   const phrases = [
-    "¡CONTÁCTANOS!",
-    "¿QUÉ ESPERAS?",
-    "HAGAMOS HISTORIA",
-    "LA BRÚJULA SE INVENTÓ",
-    "ANTES QUE EL RELOJ 😉",
-    "¡HAZ CLIC AQUÍ!"
+    "¡Contáctanos!",
+    "Let's goooo",
+    "¿Un café?",
+    "¿Pc o laptop?",
+    "¡Acá estamos!",
+    "¿Agendamos?"
   ];
 
   useMotionValueEvent(scrollY, "change", (latest) => {
