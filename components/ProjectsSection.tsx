@@ -103,6 +103,8 @@ export default function ProjectsSection() {
                   loop
                   muted
                   playsInline
+                  preload="metadata"
+                  poster={item.src.includes('dinamica') ? '/deck/assets/experience-arena-community.jpg' : '/deck/assets/falabella-coffee-party.jpg'}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 >
                   <source src={item.src} type="video/mp4" />

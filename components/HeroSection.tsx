@@ -167,11 +167,11 @@ export default function HeroSection() {
             >
               {[1, 2].map((loopIndex) => (
                 <React.Fragment key={`col1-${loopIndex}`}>
-                  <video autoPlay loop muted playsInline className="w-full aspect-[4/5] object-cover rounded-2xl border border-white/10 shadow-2xl">
+                  <video autoPlay loop muted playsInline preload="metadata" poster="/deck/assets/case-coolbox-cup.jpg" className="w-full aspect-[4/5] object-cover rounded-2xl border border-white/10 shadow-2xl">
                     <source src="/videos/coolbox-elite-cup.mp4" type="video/mp4" />
                   </video>
                   <img src="/deck/assets/experience-arena-community.jpg" className="w-full aspect-square object-cover rounded-2xl border border-white/10 shadow-2xl" />
-                  <video autoPlay loop muted playsInline className="w-full aspect-video object-cover rounded-2xl border border-white/10 shadow-2xl">
+                  <video autoPlay loop muted playsInline preload="metadata" poster="/deck/assets/experience-arena-community.jpg" className="w-full aspect-video object-cover rounded-2xl border border-white/10 shadow-2xl">
                     <source src="/videos/dinamica-kmc.mp4" type="video/mp4" />
                   </video>
                   <img src="/deck/assets/falabella-coffee-party.jpg" className="w-full aspect-[4/5] object-cover rounded-2xl border border-white/10 shadow-2xl" />
@@ -188,7 +188,7 @@ export default function HeroSection() {
               {[1, 2].map((loopIndex) => (
                 <React.Fragment key={`col2-${loopIndex}`}>
                   <img src="/deck/assets/case-gameclub-19k.jpg" className="w-full aspect-[3/4] object-cover rounded-2xl border border-white/10 shadow-2xl" />
-                  <video autoPlay loop muted playsInline className="w-full aspect-[4/5] object-cover rounded-2xl border border-white/10 shadow-2xl">
+                  <video autoPlay loop muted playsInline preload="metadata" poster="/deck/assets/falabella-coffee-party.jpg" className="w-full aspect-[4/5] object-cover rounded-2xl border border-white/10 shadow-2xl">
                     <source src="/videos/oster-activation.mp4" type="video/mp4" />
                   </video>
                   <img src="/deck/assets/ucv-connect.jpg" className="w-full aspect-square object-cover rounded-2xl border border-white/10 shadow-2xl" />
@@ -235,6 +235,7 @@ export default function HeroSection() {
                   loop
                   muted
                   playsInline
+                  preload="metadata"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
                 />
               ) : (
