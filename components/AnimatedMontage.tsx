@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
   "/deck/assets/case-coolbox-cup.jpg",
-  "/deck/assets/experience-arena-community.jpg",
+  "/deck/assets/experience-girl-gamer.jpg",
   "/deck/assets/case-gameclub-19k.jpg",
   "/deck/assets/ucv-connect.jpg"
 ];

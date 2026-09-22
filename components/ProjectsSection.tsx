@@ -11,7 +11,7 @@ const feedItems = [
   { type: 'image', src: '/deck/assets/creator-limaconcafeina.jpg', label: '@limaconcafeina', tag: 'TikTok', height: 'h-72 sm:h-96' },
   { type: 'image', src: '/deck/assets/coolbox-elite-cup-cosplay.jpg', label: 'Elite Cup Cosplay', tag: 'FANS', height: 'h-64 sm:h-80' },
   { type: 'image', src: '/deck/assets/experience-girl-gamer.jpg', label: '360° Energy', tag: 'Vibes', height: 'h-56 sm:h-72' },
-  { type: 'image', src: '/deck/assets/case-actii-kmc-1m.jpg', label: 'Hunts Plaza Vea', tag: 'Retail', height: 'h-64 sm:h-80' },
+  { type: 'image', src: '/deck/assets/content-hunts-bbq.jpg', label: 'Hunts Plaza Vea', tag: 'Retail', height: 'h-64 sm:h-80' },
   { type: 'image', src: '/deck/assets/case-coolbox-cup.jpg', label: 'Act II Desnecesítenme', tag: 'Social', height: 'h-72 sm:h-96' },
   { type: 'image', src: '/deck/assets/creator-ryan-marz.jpg', label: '@ryan.marz', tag: 'Humor Gen Z', height: 'h-56 sm:h-72' },
   { type: 'image', src: '/deck/assets/experience-sampling-crackis.jpg', label: 'Crackis', tag: 'BTL', height: 'h-48 sm:h-64' },
@@ -21,7 +21,7 @@ const feedItems = [
   { type: 'video', src: '/videos/dinamica-kmc.mp4', label: 'Dinámica KMC', tag: 'Activación', height: 'h-64 sm:h-80' },
   { type: 'image', src: '/deck/assets/experience-floril-gamer.jpg', label: 'Floril Gamer', tag: 'Sampling', height: 'h-48 sm:h-64' },
   { type: 'image', src: '/deck/assets/creator-ivic1vis.jpg', label: '@ivic1vis', tag: 'Cultura Pop', height: 'h-56 sm:h-72' },
-  { type: 'image', src: '/deck/assets/experience-arena-community.jpg', label: 'Comunidad', tag: 'Retail', height: 'h-64 sm:h-80' },
+  { type: 'image', src: '/deck/assets/experience-floril-gamer.jpg', label: 'Comunidad', tag: 'Retail', height: 'h-64 sm:h-80' },
   { type: 'image', src: '/deck/assets/content-ama-cargador.jpg', label: 'Snack Pack Pudding', tag: 'Producto', height: 'h-48 sm:h-64' },
   { type: 'image', src: '/deck/assets/content-hunts-bbq.jpg', label: 'Hunts BBQ', tag: 'Creativo', height: 'h-72 sm:h-96' },
   { type: 'image', src: '/deck/assets/content-pam-corazon.jpg', label: 'Pam Heart', tag: 'Brand', height: 'h-56 sm:h-72' },
@@ -104,7 +104,7 @@ export default function ProjectsSection() {
                   muted
                   playsInline
                   preload="metadata"
-                  poster={item.src.includes('dinamica') ? '/deck/assets/experience-arena-community.jpg' : '/deck/assets/falabella-coffee-party.jpg'}
+                  poster={item.src.includes('dinamica') ? '/deck/assets/experience-girl-gamer.jpg' : '/deck/assets/falabella-coffee-party.jpg'}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 >
                   <source src={item.src} type="video/mp4" />

@@ -9,7 +9,7 @@ import AnimatedMontage from "./AnimatedMontage";
 const highlightEvents = [
   { id: 1, type: "montage", title: "Torneos, League Ops y Broadcast", tag: "LIVE", src: "/deck/assets/case-gameclub-19k.jpg", poster: "/deck/assets/case-gameclub-19k.jpg", aspect: "aspect-[3/4]" },
   { id: 2, type: "image", title: "Sampling BTL Retail", tag: "RETAIL", src: "/deck/assets/falabella-coffee-party.jpg", aspect: "aspect-[4/5]" },
-  { id: 3, type: "image", title: "Hub de Comunidades", tag: "CREATORS", src: "/deck/assets/experience-arena-community.jpg", aspect: "aspect-[4/5]" },
+  { id: 3, type: "image", title: "Hub de Comunidades", tag: "CREATORS", src: "/deck/assets/community-gamer-headset.jpg", aspect: "aspect-[4/5]" },
   { id: 4, type: "image", title: "Producción de Eventos", tag: "ESPORTS", src: "/deck/assets/case-coolbox-cup.jpg", aspect: "aspect-[4/5]" },
 ];
 
@@ -34,7 +34,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0 bg-black overflow-hidden">
         {/* Mobile Background Image (Solo visible en pantallas chicas donde el feed lateral no está) */}
         <div className="absolute inset-0 block lg:hidden opacity-30 mix-blend-lighten">
-          <img src="/deck/assets/experience-arena-community.jpg" alt="" className="w-full h-full object-cover object-center" />
+          <img src="/deck/assets/community-gamer-headset.jpg" alt="" className="w-full h-full object-cover object-center" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/20" />
         </div>
 
@@ -186,8 +186,8 @@ export default function HeroSection() {
                   <video autoPlay loop muted playsInline preload="metadata" poster="/deck/assets/case-coolbox-cup.jpg" className="w-full aspect-[4/5] object-cover rounded-2xl border border-white/10 shadow-2xl">
                     <source src="/videos/coolbox-elite-cup.mp4" type="video/mp4" />
                   </video>
-                  <img src="/deck/assets/experience-arena-community.jpg" className="w-full aspect-square object-cover rounded-2xl border border-white/10 shadow-2xl" />
-                  <video autoPlay loop muted playsInline preload="metadata" poster="/deck/assets/experience-arena-community.jpg" className="w-full aspect-video object-cover rounded-2xl border border-white/10 shadow-2xl">
+                  <img src="/deck/assets/falabella-gamer-zone.jpg" className="w-full aspect-square object-cover rounded-2xl border border-white/10 shadow-2xl" />
+                  <video autoPlay loop muted playsInline preload="metadata" poster="/deck/assets/experience-girl-gamer.jpg" className="w-full aspect-video object-cover rounded-2xl border border-white/10 shadow-2xl">
                     <source src="/videos/dinamica-kmc.mp4" type="video/mp4" />
                   </video>
                   <img src="/deck/assets/falabella-coffee-party.jpg" className="w-full aspect-[4/5] object-cover rounded-2xl border border-white/10 shadow-2xl" />

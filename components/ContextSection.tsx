@@ -30,7 +30,7 @@ const liveShots = [
     title: "Comunidad & Torneos",
     year: "2025",
     tag: "LIVE EXPERIENCE",
-    image: "/deck/assets/experience-arena-community.jpg",
+    image: "/deck/assets/experience-girl-gamer.jpg",
     rotate: "3deg",
   },
 ];
