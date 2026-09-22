@@ -49,18 +49,7 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-start h-full min-h-[90vh]">
           
           {/* COLUMNA IZQUIERDA: TEXTO Y CTA */}
-          <div className="flex flex-col gap-2 lg:gap-4 text-center lg:text-left px-4 lg:pl-12 xl:pl-20 pt-8 lg:pt-16 pb-8 relative z-20">
-            
-            {/* LOGO DEM HEADER */}
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
-              className="flex justify-center lg:justify-start mb-6 lg:mb-8"
-            >
-              <div className="relative w-32 h-10 md:w-48 md:h-14">
-                <Image src="/images/dem-logo-white.png" alt="DEM Logo" fill className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]" />
-              </div>
-            </motion.div>
-
+          <div className="flex flex-col gap-2 lg:gap-4 text-center lg:text-left px-4 lg:pl-12 xl:pl-20 pt-16 lg:pt-20 pb-8 relative z-20">
             <motion.h2 
               initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
               className="text-white font-display font-black tracking-tighter uppercase leading-none text-4xl sm:text-5xl lg:text-[3rem] xl:text-[3.5rem] drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]"
@@ -91,67 +80,79 @@ export default function HeroSection() {
               </motion.div>
             </motion.div>
             
+            {/* FIRMA DEM */}
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.6 }}
+              className="flex items-center gap-3 lg:gap-4 mt-3 lg:mt-4 mx-auto lg:mx-0 w-fit"
+            >
+              <div className="w-6 lg:w-10 h-[1px] bg-gradient-to-r from-transparent to-[#3A45D0]" />
+              <p className="font-sans text-[9px] sm:text-[10px] lg:text-xs tracking-[0.4em] text-zinc-300 uppercase font-bold drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]">
+                DIGITAL ENTERTAINMENT MANAGEMENT
+              </p>
+              <div className="w-6 lg:w-10 h-[1px] bg-gradient-to-l from-transparent to-[#3A45D0] lg:hidden" />
+            </motion.div>
+
             <p className="font-sans text-sm sm:text-base lg:text-lg text-zinc-300 font-light mt-8 lg:mt-10 max-w-lg mx-auto lg:mx-0 leading-relaxed drop-shadow-md">
               Creamos un calendario de campañas que refuerzan los objetivos para conectar con el segmento digital y convocarlos a experiencias de comunidad.
             </p>
 
-            {/* CAJA DE CONTACTO INTEGRADA (GLASSMORPHISM PREMIUM) */}
-            <div className="mt-8 lg:mt-10 p-1 sm:p-1.5 rounded-[2rem] bg-gradient-to-br from-white/10 via-transparent to-white/5 shadow-2xl w-full max-w-xl mx-auto lg:mx-0">
-              <div className="p-6 sm:p-8 rounded-[1.8rem] bg-black/40 backdrop-blur-2xl border border-white/5 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#3A45D0]/10 via-transparent to-purple-500/10 pointer-events-none" />
-                
-                {/* Glow dinámico */}
-                <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#3A45D0]/30 blur-[60px] rounded-full pointer-events-none" />
-                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-500/20 blur-[60px] rounded-full pointer-events-none" />
-                
-                <form 
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    const formData = new FormData(e.currentTarget);
-                    const nombre = formData.get("Nombre") as string;
-                    const empresa = formData.get("Empresa") as string;
-                    const mensaje = formData.get("Mensaje") as string;
-                    
-                    const subject = encodeURIComponent(`Contacto de ${nombre} (${empresa})`);
-                    const body = encodeURIComponent(`Hola equipo DEM,\n\nMi nombre es ${nombre} de ${empresa}.\n\n${mensaje}`);
-                    
-                    window.location.href = `mailto:hola@dem.agency?subject=${subject}&body=${body}`;
-                  }} 
-                  className="relative z-10 flex flex-col gap-4"
-                >
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <input 
-                      type="text" 
-                      name="Nombre" 
-                      placeholder="Tu Nombre" 
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-[#7B85FF] focus:bg-white/10 transition-all text-sm font-medium" 
-                      required 
-                    />
-                    <input 
-                      type="text" 
-                      id="empresa-input"
-                      name="Empresa" 
-                      placeholder="Tu Empresa" 
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-[#7B85FF] focus:bg-white/10 transition-all text-sm font-medium" 
-                      required 
-                    />
-                  </div>
-                  <textarea 
-                    name="Mensaje" 
-                    placeholder="¿De qué trata tu proyecto?" 
-                    rows={2}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-[#7B85FF] focus:bg-white/10 transition-all text-sm font-medium resize-none" 
+            {/* CAJA DE CONTACTO INTEGRADA ABAJO */}
+            <div className="mt-6 lg:mt-8 p-6 sm:p-8 rounded-[2rem] bg-zinc-950/80 border border-[#3A45D0]/40 backdrop-blur-3xl shadow-[0_0_50px_rgba(58,69,208,0.25)] ring-1 ring-white/10 w-full max-w-xl mx-auto lg:mx-0 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#3A45D0]/15 to-transparent pointer-events-none" />
+              
+              {/* Glow sutil dentro de la caja */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 blur-[50px] rounded-full pointer-events-none" />
+              
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const nombre = formData.get("Nombre") as string;
+                  const empresa = formData.get("Empresa") as string;
+                  const mensaje = formData.get("Mensaje") as string;
+                  
+                  const subject = encodeURIComponent(`Contacto de ${nombre} (${empresa})`);
+                  const body = encodeURIComponent(`Hola equipo DEM,\n\nMi nombre es ${nombre} de ${empresa}.\n\n${mensaje}`);
+                  
+                  window.location.href = `mailto:hola@dem.agency?subject=${subject}&body=${body}`;
+                }} 
+                className="relative z-10 flex flex-col gap-4"
+              >
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <input 
+                    type="text" 
+                    name="Nombre" 
+                    placeholder="Tu Nombre" 
+                    className="w-full bg-black/80 border border-white/20 rounded-xl px-5 py-3 text-white placeholder-zinc-400 focus:outline-none focus:border-[#3A45D0] focus:ring-2 focus:ring-[#3A45D0]/50 transition-all text-sm font-medium" 
                     required 
                   />
-                  <button
-                    type="submit"
-                    className="group w-full relative overflow-hidden flex items-center justify-center gap-3 px-6 py-4 mt-2 text-sm font-sans font-black uppercase tracking-widest text-white bg-white/5 border border-white/10 hover:bg-[#3A45D0] rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(58,69,208,0.5)] hover:scale-[1.02] active:scale-[0.98]"
-                  >
-                    <span className="relative z-10 text-white drop-shadow-md">Hablemos del 2027</span>
-                    <span className="relative z-10 text-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">🚀</span>
-                  </button>
-                </form>
-              </div>
+                  <input 
+                    type="text" 
+                    id="empresa-input"
+                    name="Empresa" 
+                    placeholder="Tu Empresa" 
+                    className="w-full bg-black/80 border border-white/20 rounded-xl px-5 py-3 text-white placeholder-zinc-400 focus:outline-none focus:border-[#3A45D0] focus:ring-2 focus:ring-[#3A45D0]/50 transition-all text-sm font-medium" 
+                    required 
+                  />
+                </div>
+                <textarea 
+                  name="Mensaje" 
+                  placeholder="¿De qué trata tu proyecto?" 
+                  rows={2}
+                  className="w-full bg-black/80 border border-white/20 rounded-xl px-5 py-3 text-white placeholder-zinc-400 focus:outline-none focus:border-[#3A45D0] focus:ring-2 focus:ring-[#3A45D0]/50 transition-all text-sm font-medium resize-none" 
+                  required 
+                />
+                <button
+                  type="submit"
+                  className="group w-full relative overflow-hidden flex items-center justify-center gap-3 px-6 py-4 mt-2 text-sm font-sans font-black uppercase tracking-widest text-white bg-black/60 border border-[#3A45D0]/60 hover:bg-[#3A45D0]/20 rounded-xl transition-all shadow-[0_0_20px_rgba(58,69,208,0.2)] hover:shadow-[0_0_30px_rgba(58,69,208,0.5)] hover:border-white/50 hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <span className="relative z-10 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">Hablemos del 2027</span>
+                  <span className="relative z-10 text-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">🚀</span>
+                </button>
+              </form>
+              <p className="relative z-10 text-[9px] text-zinc-500 mt-4 font-mono text-center uppercase tracking-widest">
+                Sincronizado con Read.ai, Calendar & Meet.
+              </p>
             </div>
           </div>
 
