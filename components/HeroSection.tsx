@@ -167,16 +167,12 @@ export default function HeroSection() {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute inset-0 bg-gradient-to-tr from-[#3A45D0] to-purple-600 blur-[80px] rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2" 
               />
-              <motion.div
-                animate={{ y: [-15, 15, -15], rotateZ: [-3, 3, -3] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="relative"
-              >
+              <div className="relative">
                 {/* Logo principal con sombras masivas */}
                 <div className="relative w-48 h-20 md:w-80 md:h-32 filter brightness-110 drop-shadow-[0_30px_40px_rgba(0,0,0,0.9)]">
                   <Image src="/images/dem-logo-white.png" alt="DEM Logo" fill className="object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Columna 1 del Feed (Hacia arriba) */}
