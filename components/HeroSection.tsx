@@ -159,6 +159,26 @@ export default function HeroSection() {
           {/* COLUMNA DERECHA: PINTEREST WATERFALL FEED */}
           <div className="hidden lg:flex relative h-[120vh] -top-[10vh] w-full justify-center gap-4 px-8 overflow-hidden z-10" style={{ maskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)" }}>
             
+            {/* LOGO DEM FLOTANTE (HOLOGRÁFICO) SOBRE LA CASCADA */}
+            <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none flex flex-col items-center">
+              {/* Glow trasero que ilumina la cascada detrás del logo */}
+              <motion.div 
+                animate={{ opacity: [0.3, 0.6, 0.3], scale: [0.9, 1.1, 0.9] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 bg-gradient-to-tr from-[#3A45D0] to-purple-600 blur-[80px] rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2" 
+              />
+              <motion.div
+                animate={{ y: [-15, 15, -15], rotateZ: [-3, 3, -3] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="relative"
+              >
+                {/* Logo principal con sombras masivas */}
+                <div className="relative w-48 h-20 md:w-80 md:h-32 filter brightness-110 drop-shadow-[0_30px_40px_rgba(0,0,0,0.9)]">
+                  <Image src="/images/dem-logo-white.png" alt="DEM Logo" fill className="object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
+                </div>
+              </motion.div>
+            </div>
+
             {/* Columna 1 del Feed (Hacia arriba) */}
             <motion.div 
               animate={{ y: [0, -1500] }} 
