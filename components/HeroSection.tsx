@@ -173,8 +173,8 @@ export default function HeroSection() {
                 className="relative"
               >
                 {/* Logo principal con sombras masivas */}
-                <div className="relative w-36 h-36 md:w-56 md:h-56 filter brightness-110 drop-shadow-[0_30px_40px_rgba(0,0,0,0.9)]">
-                  <Image src="/images/dem-icon-d-white.png" alt="DEM Logo" fill className="object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
+                <div className="relative w-48 h-20 md:w-80 md:h-32 filter brightness-110 drop-shadow-[0_30px_40px_rgba(0,0,0,0.9)]">
+                  <Image src="/images/dem-logo-white.png" alt="DEM Logo" fill className="object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]" />
                 </div>
               </motion.div>
             </div>
